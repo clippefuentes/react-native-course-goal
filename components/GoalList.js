@@ -1,23 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
-import GoalInput from './components/GoalInput';
-import GoalList from './components/GoalList';
 
-export default function App() {
+export default function GoalList() {
   return (
     <View style={styles.container}>
-      <GoalInput />
-      <GoalList />
+      Should be list
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 8,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
+    borderWidth: 1,
+    borderColor: 'black',
+    width: '95%',
+    marginBottom: '1%'
   },
 });
