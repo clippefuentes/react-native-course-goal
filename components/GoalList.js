@@ -1,17 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, Pressable } from 'react-native';
 
-export default function GoalList() {
+export default function GoalList({ goals }) {
   return (
-    <View style={styles.container}>
-      Should be list
-    </View>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        {goals.map((goal, index) => (
+          <Pressable
+            key={index}
+            style={({ pressed }) => [
+              styles.pressable,
+              {
+                opacity: pressed ? 0.5 : 1
+              },
+            ]}
+          >
+            <Text style={styles.pressableText}>
+              {goal}
+            </Text>
+          </Pressable>
+        ))}
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 8,
+    flex: 10,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
@@ -19,6 +35,18 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'black',
     width: '95%',
-    marginBottom: '1%'
+    marginBottom: '1%',
+    borderRadius: 10,
+  },
+  pressable: {
+    backgroundColor: 'black',
+    padding: 10,
+    marginVertical: 5,
+    width: '90%',
+    borderRadius: 10, 
+  },
+  pressableText: {
+    color: 'white',
+    textAlign: 'center',
   },
 });
