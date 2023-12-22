@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, Pressable } from 'react-native';
 
-export default function GoalList({ goals }) {
+export default function GoalList({ goals, openDeleteModal }) {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
@@ -14,6 +14,7 @@ export default function GoalList({ goals }) {
                 opacity: pressed ? 0.5 : 1
               },
             ]}
+            onPress={() => openDeleteModal(goal)}
           >
             <Text style={styles.pressableText}>
               {goal}
@@ -30,12 +31,13 @@ const styles = StyleSheet.create({
     flex: 10,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
+    paddingTop: 10,
     flexDirection: 'column',
     borderWidth: 1,
     borderColor: 'black',
     width: '95%',
-    marginBottom: '1%',
+    marginBottom: '5%',
     borderRadius: 10,
   },
   pressable: {
