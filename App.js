@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, Modal } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import GoalInput from './components/GoalInput';
 import GoalList from './components/GoalList';
+import GoalDeleteModal from './components/GoalDeleteModal';
 
 export default function App() {
   const [addInputText, setAddInputText] = useState('');
@@ -45,20 +46,12 @@ export default function App() {
         goals={goals}
         openDeleteModal={handlePress}
       />
-      <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => setModalVisible(false)}
-        >
-          <View style={styles.modalContainer}>
-            <View >
-              <Text>Do you want to delete </Text>
-              <Button title="Cancel" onPress={() => setModalVisible(false)} />
-              <Button title="Delete" onPress={handleDelete} />
-            </View>
-          </View>
-        </Modal>
+      <GoalDeleteModal
+        deleteGoal={handleDelete}
+        setShowDeleteModal={setModalVisible}
+        showDeleteModal={modalVisible}
+        
+      />
     </View>
   );
 }
@@ -71,11 +64,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
 });
